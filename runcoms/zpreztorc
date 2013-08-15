@@ -31,6 +31,10 @@ zstyle ':prezto:load' pmodule \
   'directory' \
   'spectrum' \
   'utility' \
+  'git' \
+  'ruby' \
+  'rails' \
+  'osx' \
   'completion' \
   'prompt'
 

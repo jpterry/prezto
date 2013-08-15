@@ -12,3 +12,93 @@ fi
 
 # Customize to your needs...
 
+#############################################
+############### Shell Config ################
+#############################################
+# HISTORY
+HISTSIZE=100000
+SAVEHIST=100000
+HISTFILE=~/.zsh_history
+#Don't share history across sessions
+setopt append_history no_inc_append_history no_share_history
+
+#############################################
+################ John below  ################
+#############################################
+
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/texbin:/usr/X11/bin:/usr/local/mysql/bin:/usr/local/go/bin:$HOME/Code/android/android-sdk-mac_86/tools:$HOME/Code/android/android-sdk-mac_86/platform-tools:$HOME/Code/depot_tools:$HOME/Code/scripts:$PATH
+
+export EDITOR="mvim -f"
+export VISUAL="mvim -f"
+
+# key bindings
+# fix the delete key
+bindkey '^[[3~' delete-char
+bindkey '^[OM' accept-line
+
+# Aliases
+alias ll='ls -l'
+alias la='ls -a'
+alias sss='/System/Library/Frameworks/ScreenSaver.framework/Versions/A/Resources/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine &'
+alias xcode='open -a XCode'
+
+# RingRevenue project shortcuts
+alias RR_web='~/Code/ringRevenue/src/web'
+alias R3='~/Code/ringRevenue/src/web_rails3'
+alias REVFE='~/Code/ringRevenue/src/revops-frontends'
+alias REVMON='~/Code/ringRevenue/src/revops-monitor'
+
+#Personal project shortcuts
+alias HC='~/Code/hacker_cast'
+alias SC='~/Code/sesh_code'
+
+alias subl="/Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl"
+
+#git
+alias gst="git status"
+alias gss="git status -sb"
+
+alias gd="git diff"
+alias gdc="git diff --cached"
+
+alias glg="git log --oneline --graph --decorate"
+alias glgg="git log --graph --decorate"
+alias glga="git log --graph --pretty=format:'%C(yellow)%h%Creset %C(bold blue)(%an)%Creset%C(yellow)%d%Creset %s %Cgreen<%cr>%Creset' --abbrev-commit --date=short"
+
+alias gap="git add --patch"
+
+alias gcn="git commit --no-edit"
+
+alias knife="nocorrect knife"
+
+
+# Use gcc for CC. XCode 4.2 clang doesn't work with everything. Notably compiling some ruby gems
+#export CC=gcc-4.2
+
+# Fixes slow git completion
+__git_files () {
+    _wanted files expl 'local files' _files
+}
+
+
+
+#############################################
+############## Helper Functions #############
+#############################################
+# curl helpers
+curl_stat()
+{
+  echo ""
+  echo "Results as of `date`"
+  curl --write-out '\nName Lookup Time:\t%{time_namelookup}\nConnect Time:\t\t%{time_connect}\nPretransfer Time:\t%{time_pretransfer}\nStart Transfer Time:\t%{time_starttransfer}\n\nTotal time:\t\t%{time_total}\n' --silent --output /dev/null --url "$1"
+}
+
+ctags_rails()
+{
+  ctags --exclude=.git --exclude=log -R * $(bundle show --paths)
+}
+# Setup rbenv
+export RBENV_ROOT="/usr/local/rbenv"
+eval "$(rbenv init -)"
+
+return 0
