@@ -26,7 +26,7 @@ setopt append_history no_inc_append_history no_share_history
 ################ John below  ################
 #############################################
 
-export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/texbin:/usr/X11/bin:/usr/local/mysql/bin:/usr/local/go/bin:$HOME/Code/android/android-sdk-mac_86/tools:$HOME/Code/android/android-sdk-mac_86/platform-tools:$HOME/Code/depot_tools:$HOME/Code/scripts:$PATH
+#export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/texbin:/usr/X11/bin:/usr/local/mysql/bin:/usr/local/go/bin:$HOME/Code/scripts:$PATH
 
 export EDITOR="mvim -f"
 export VISUAL="mvim -f"
@@ -51,6 +51,7 @@ alias REVMON='~/Code/ringRevenue/src/revops-monitor'
 #Personal project shortcuts
 alias HC='~/Code/hacker_cast'
 alias SC='~/Code/sesh_code'
+alias MIN='~/Code/minimal'
 
 alias subl="/Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl"
 
@@ -72,6 +73,9 @@ alias gcn="git commit --no-edit"
 alias knife="nocorrect knife"
 
 
+# FOR POSTGRES.APP
+PATH="/Applications/Postgres.app/Contents/MacOS/bin:$PATH"
+
 # Use gcc for CC. XCode 4.2 clang doesn't work with everything. Notably compiling some ruby gems
 #export CC=gcc-4.2
 
@@ -81,7 +85,11 @@ __git_files () {
 }
 
 
-
+litemine()
+{
+  cd ~/Downloads
+  ./minerd -o 'http://mining.usa.la.hypernova.pw:9332' -u DROOMER.CPU1 -p 234234
+}
 #############################################
 ############## Helper Functions #############
 #############################################
@@ -97,8 +105,5 @@ ctags_rails()
 {
   ctags --exclude=.git --exclude=log -R * $(bundle show --paths)
 }
-# Setup rbenv
-export RBENV_ROOT="/usr/local/rbenv"
-eval "$(rbenv init -)"
 
 return 0
