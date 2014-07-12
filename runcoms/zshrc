@@ -42,23 +42,16 @@ alias la='ls -a'
 alias sss='/System/Library/Frameworks/ScreenSaver.framework/Versions/A/Resources/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine &'
 alias xcode='open -a XCode'
 
-# RingRevenue project shortcuts
-alias RR_web='~/Code/ringRevenue/src/web'
-alias R3='~/Code/ringRevenue/src/web_rails3'
-alias REVFE='~/Code/ringRevenue/src/revops-frontends'
-alias REVMON='~/Code/ringRevenue/src/revops-monitor'
-
 #Personal project shortcuts
 alias HC='~/Code/hacker_cast'
 alias SC='~/Code/sesh_code'
 alias MIN='~/Code/minimal'
 
-alias subl="/Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl"
+#OpenGov
+alias OG='~/Code/OpenGov'
+alias OGDel='~/Code/OpenGov/DelphiusApp'
 
 #git
-alias gst="git status"
-alias gss="git status -sb"
-
 alias gd="git diff"
 alias gdc="git diff --cached"
 
@@ -72,10 +65,6 @@ alias gcn="git commit --no-edit"
 
 alias knife="nocorrect knife"
 
-
-# FOR POSTGRES.APP
-PATH="/Applications/Postgres.app/Contents/MacOS/bin:$PATH"
-
 # Use gcc for CC. XCode 4.2 clang doesn't work with everything. Notably compiling some ruby gems
 #export CC=gcc-4.2
 
@@ -85,11 +74,6 @@ __git_files () {
 }
 
 
-litemine()
-{
-  cd ~/Downloads
-  ./minerd -o 'http://mining.usa.la.hypernova.pw:9332' -u DROOMER.CPU1 -p 234234
-}
 #############################################
 ############## Helper Functions #############
 #############################################
