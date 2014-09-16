@@ -10,6 +10,10 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
+# Source Secrets.
+if [[ -s "${ZDOTDIR:-$HOME}/.secrets" ]]; then
+  source "${ZDOTDIR:-$HOME}/.secrets"
+fi
 # Customize to your needs...
 
 #############################################
@@ -50,6 +54,7 @@ alias MIN='~/Code/minimal'
 #OpenGov
 alias OG='~/Code/OpenGov'
 alias OGDel='~/Code/OpenGov/DelphiusApp'
+alias OGChefKichen='~/Code/OpenGov/chef_kitchen'
 
 #git
 alias gd="git diff"

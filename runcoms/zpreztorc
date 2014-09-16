@@ -35,6 +35,7 @@ zstyle ':prezto:load' pmodule \
   'ruby' \
   'rails' \
   'osx' \
+  'homebrew' \
   'completion' \
   'prompt'
 
@@ -46,7 +47,7 @@ zstyle ':prezto:load' pmodule \
 zstyle ':prezto:module:editor' key-bindings 'emacs'
 
 # Auto convert .... to ../..
-# zstyle ':prezto:module:editor' dot-expansion 'yes'
+zstyle ':prezto:module:editor' dot-expansion 'yes'
 
 #
 # Git
@@ -132,7 +133,7 @@ zstyle ':prezto:module:prompt' theme 'bombn'
 #
 
 # Auto set the tab and window titles.
-# zstyle ':prezto:module:terminal' auto-title 'yes'
+ zstyle ':prezto:module:terminal' auto-title 'yes'
 
 # Set the window title format.
 # zstyle ':prezto:module:terminal:window-title' format '%n@%m: %s'
