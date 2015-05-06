@@ -53,6 +53,7 @@ alias MIN='~/Code/minimal'
 
 #OpenGov
 alias OG='~/Code/OpenGov'
+alias OGG='~/Code/OpenGov/GridData'
 alias OGDel='~/Code/OpenGov/DelphiusApp'
 alias OGChefKichen='~/Code/OpenGov/chef_kitchen'
 
@@ -62,7 +63,7 @@ alias gdc="git diff --cached"
 
 alias glg="git log --oneline --graph --decorate"
 alias glgg="git log --graph --decorate"
-alias glga="git log --graph --pretty=format:'%C(yellow)%h%Creset %C(bold blue)(%an)%Creset%C(yellow)%d%Creset %s %Cgreen<%cr>%Creset' --abbrev-commit --date=short"
+alias glga="git log --graph --pretty=format:'%C(yellow)%h%Creset %C(bold blue)(%an)%Creset%C(yellow)%d%Creset %s %Cgreen<%cr, %ar>%Creset' --abbrev-commit --date=short"
 
 alias gap="git add --patch"
 
@@ -87,12 +88,18 @@ curl_stat()
 {
   echo ""
   echo "Results as of `date`"
-  curl --write-out '\nName Lookup Time:\t%{time_namelookup}\nConnect Time:\t\t%{time_connect}\nPretransfer Time:\t%{time_pretransfer}\nStart Transfer Time:\t%{time_starttransfer}\n\nTotal time:\t\t%{time_total}\n' --silent --output /dev/null --url "$1"
+  curl -k --write-out '\nName Lookup Time:\t%{time_namelookup}\nConnect Time:\t\t%{time_connect}\nPretransfer Time:\t%{time_pretransfer}\nStart Transfer Time:\t%{time_starttransfer}\n\nTotal time:\t\t%{time_total}\n' --silent --output /dev/null --url "$1"
 }
 
 ctags_rails()
 {
-  ctags --exclude=.git --exclude=log -R * $(bundle show --paths)
+  rm tags && ctags --exclude=.git --exclude=log --exclude='*.js' -R * $(bundle show --paths)
 }
+
+ssh_home()
+{
+  ssh pi@hq.jpterry.net -p 7994 -L 7788:192.168.1.20:80 -L 7799:192.168.1.30:80
+}
+
 
 return 0
