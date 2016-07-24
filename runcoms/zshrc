@@ -34,6 +34,9 @@ setopt append_history no_inc_append_history no_share_history
 
 #export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/texbin:/usr/X11/bin:/usr/local/mysql/bin:/usr/local/go/bin:$HOME/Code/scripts:$PATH
 
+# Postgres.app on my PATH
+export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin
+
 export EDITOR="mvim -f"
 export VISUAL="mvim -f"
 
@@ -92,7 +95,15 @@ __git_files () {
 # curl helpers
 curl_stat()
 {
-  local stat_def="Results as of $(date):
+  local stat_def="
+Results as of $(date):
+
+Response:
+  http_code:           %{http_code}
+  content_type:        %{content_type}
+  size_download_bytes: %{size_download}
+
+Time:
   time_namelookup:     %{time_namelookup}
   time_connect:        %{time_connect}
   time_appconnect:     %{time_appconnect}
@@ -118,6 +129,12 @@ ssh_home()
 chefdk()
 {
   eval "$(chef shell-init zsh)"
+}
+
+nvminit()
+{
+  export NVM_DIR="$HOME/.nvm"
+  . "$(brew --prefix nvm)/nvm.sh"
 }
 
 docker_shell()
