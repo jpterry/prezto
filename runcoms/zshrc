@@ -32,18 +32,17 @@ setopt append_history no_inc_append_history no_share_history
 ################ John below  ################
 #############################################
 
-#export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/texbin:/usr/X11/bin:/usr/local/mysql/bin:/usr/local/go/bin:$HOME/Code/scripts:$PATH
-
-# Postgres.app on my PATH
-export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin
-
+export PATH="$HOME/bin:$PATH"
 export EDITOR="mvim -f"
 export VISUAL="mvim -f"
 
+export EDITOR="/usr/local/opt/emacs-plus/bin/emacsclient -c"
+export VISUAL="$EDITOR"
+
 # key bindings
 # fix the delete key
-bindkey '^[[3~' delete-char
-bindkey '^[OM' accept-line
+#bindkey '^[[3~' delete-char
+#bindkey '^[OM' accept-line
 
 # Aliases
 alias ll='ls -l'
@@ -79,6 +78,8 @@ alias gap="git add --patch"
 alias gcn="git commit --no-edit"
 
 alias knife="nocorrect knife"
+
+alias todos="ag -C0 '#\s*[A-Z]{3,}:'"
 
 # Use gcc for CC. XCode 4.2 clang doesn't work with everything. Notably compiling some ruby gems
 #export CC=gcc-4.2
@@ -129,6 +130,8 @@ ssh_home()
 chefdk()
 {
   eval "$(chef shell-init zsh)"
+  export CHEF_CLIENT_USER=jpterry
+  export CHEF_CLIENT_KEY_PATH=$HOME/.chef/jpterry.pem
 }
 
 nvminit()
