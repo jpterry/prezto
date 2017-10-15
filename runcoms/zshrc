@@ -44,10 +44,13 @@ fi
 export EDITOR="mvim -f"
 export VISUAL="mvim -f"
 
+export EDITOR="/usr/local/opt/emacs-plus/bin/emacsclient -c"
+export VISUAL="$EDITOR"
+
 # key bindings
 # fix the delete key
-bindkey '^[[3~' delete-char
-bindkey '^[OM' accept-line
+#bindkey '^[[3~' delete-char
+#bindkey '^[OM' accept-line
 
 # Aliases
 alias ll='ls -l'
@@ -84,6 +87,8 @@ alias gcn="git commit --no-edit"
 
 alias knife="nocorrect knife"
 
+alias todos="ag -C0 '#\s*[A-Z]{3,}:'"
+
 # Use gcc for CC. XCode 4.2 clang doesn't work with everything. Notably compiling some ruby gems
 #export CC=gcc-4.2
 
@@ -99,7 +104,15 @@ __git_files () {
 # curl helpers
 curl_stat()
 {
-  local stat_def="Results as of $(date):
+  local stat_def="
+Results as of $(date):
+
+Response:
+  http_code:           %{http_code}
+  content_type:        %{content_type}
+  size_download_bytes: %{size_download}
+
+Time:
   time_namelookup:     %{time_namelookup}
   time_connect:        %{time_connect}
   time_appconnect:     %{time_appconnect}
@@ -130,6 +143,14 @@ ssh_home()
 chefdk()
 {
   eval "$(chef shell-init zsh)"
+  export CHEF_CLIENT_USER=jpterry
+  export CHEF_CLIENT_KEY_PATH=$HOME/.chef/jpterry.pem
+}
+
+nvminit()
+{
+  export NVM_DIR="$HOME/.nvm"
+  . "$(brew --prefix nvm)/nvm.sh"
 }
 
 docker_shell()
