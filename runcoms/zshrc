@@ -192,10 +192,4 @@ fi
 
 #[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-export GPG_TTY="$(tty)"
-export SSH_AUTH_SOCK="${HOME}/.gnupg/S.gpg-agent.ssh"
-gpgconf --launch gpg-agent
-
-echo "UPDATESTARTUPTTY" | gpg-connect-agent /bye > /dev/null 2>&1
-
 return 0
