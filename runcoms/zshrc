@@ -16,7 +16,9 @@ if [[ -s "${ZDOTDIR:-$HOME}/.secrets" ]]; then
 fi
 # Customize to your needs...
 
-source ~/.iterm2_shell_integration.zsh
+if [[ -s "$HOME}/.iterm2_shell_integration.zsh" ]]; then
+  source ~/.iterm2_shell_integration.zsh
+fi
 
 #############################################
 ############### Shell Config ################
@@ -35,7 +37,13 @@ setopt interactivecomments
 ################ John below  ################
 #############################################
 
-export PATH="$HOME/bin:$PATH"
+#export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/texbin:/usr/X11/bin:/usr/local/mysql/bin:/usr/local/go/bin:$HOME/Code/scripts:$PATH
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ]; then
+  PATH="$HOME/bin:$PATH"
+fi
+
 export EDITOR="mvim -f"
 export VISUAL="mvim -f"
 
@@ -125,7 +133,12 @@ Time:
   ---------------------------
   time_total:          %{time_total}
 "
-  curl -k --write-out "$stat_def" --output /dev/null --silent --url "$@"
+  curl -k -IL --write-out "$stat_def" --output /dev/null --silent "$@"
+}
+
+curl_follow_redirects()
+{
+  curl -IL --silent --write-out "%{url_effective}\n" --output /dev/null "$@"
 }
 
 ctags_rails()
@@ -178,5 +191,11 @@ if [ -x "$gpg_agent_path" ]; then
 fi
 
 #[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export GPG_TTY="$(tty)"
+export SSH_AUTH_SOCK="${HOME}/.gnupg/S.gpg-agent.ssh"
+gpgconf --launch gpg-agent
+
+echo "UPDATESTARTUPTTY" | gpg-connect-agent /bye > /dev/null 2>&1
 
 return 0
