@@ -28,6 +28,9 @@ HISTFILE=~/.zsh_history
 #Don't share history across sessions
 setopt append_history no_inc_append_history no_share_history
 
+# Allow interactive comments with #
+setopt interactivecomments
+
 #############################################
 ################ John below  ################
 #############################################
@@ -50,6 +53,8 @@ alias la='ls -a'
 alias sss='/System/Library/Frameworks/ScreenSaver.framework/Versions/A/Resources/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine &'
 alias xcode='open -a XCode'
 
+alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
+
 #Personal project shortcuts
 alias HC='~/Code/hacker_cast'
 alias SC='~/Code/sesh_code'
@@ -59,8 +64,11 @@ alias MIN='~/Code/minimal'
 alias OG='~/Code/OpenGov'
 alias OGG='~/Code/OpenGov/GridData'
 alias OGD='~/Code/OpenGov/DelphiusApp'
+alias OGV='~/Code/OpenGov/voltron'
 alias OGD2='~/Code/OpenGov/DelphiusApp2'
 alias OGChefKichen='~/Code/OpenGov/chef_kitchen'
+
+alias OD='~/Code/OpenGov/OpenGovDeploy'
 
 #git
 alias gd="git diff"
@@ -81,6 +89,9 @@ alias knife="nocorrect knife"
 
 alias todos="ag -C0 '#\s*[A-Z]{3,}:'"
 
+jiratag(){
+  open "https://opengovinc.atlassian.net/browse/$1"
+}
 # Use gcc for CC. XCode 4.2 clang doesn't work with everything. Notably compiling some ruby gems
 #export CC=gcc-4.2
 
@@ -122,6 +133,11 @@ ctags_rails()
   rm tags && ctags --exclude=.git --exclude=log --exclude='*.js' -R * $(bundle show --paths)
 }
 
+strip_shell_colors()
+{
+    perl -pe 's/\x1b\[[0-9;]*[mG]//g' "$@"
+}
+
 ssh_home()
 {
   ssh root@hq.jpterry.net -p 7922 -L 7788:192.168.1.20:80 -L 7799:192.168.1.30:80
@@ -152,6 +168,14 @@ docker_shell()
   echo "$dev_machine_name setup @ $(docker-machine ip $dev_machine_name)"
 }
 
+# GPG & GPG Agent setup
+gpg_agent_path=$(which gpg-agent)
+if [ -x "$gpg_agent_path" ]; then
+    export GPG_TTY=$(tty)
+    export SSH_AUTH_SOCK="${HOME}/.gnupg/S.gpg-agent.ssh"
+    gpgconf --launch gpg-agent
+    echo "UPDATESTARTUPTTY" | gpg-connect-agent /bye > /dev/null 2>&1
+fi
 
 #[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
