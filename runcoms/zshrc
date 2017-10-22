@@ -4,7 +4,6 @@
 # Authors:
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
-
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
@@ -179,6 +178,11 @@ docker_shell()
   echo "Setting docker environment"
   eval "$(docker-machine env $dev_machine_name)"
   echo "$dev_machine_name setup @ $(docker-machine ip $dev_machine_name)"
+}
+
+jtnotes()
+{
+    e ~/Dropbox/Notes/jpt.org.gpg
 }
 
 # GPG & GPG Agent setup
