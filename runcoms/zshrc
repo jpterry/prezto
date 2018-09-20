@@ -46,7 +46,7 @@ fi
 export EDITOR="mvim -f"
 export VISUAL="mvim -f"
 
-export EDITOR="/usr/local/opt/emacs-plus/bin/emacsclient -c"
+export EDITOR="/usr/local/bin/emacsclient -c"
 export VISUAL="$EDITOR"
 
 # key bindings
@@ -67,13 +67,9 @@ alias HC='~/Code/hacker_cast'
 alias SC='~/Code/sesh_code'
 alias MIN='~/Code/minimal'
 
-#OpenGov
-alias OG='~/Code/OpenGov'
-alias OGG='~/Code/OpenGov/GridData'
-alias OGD='~/Code/OpenGov/DelphiusApp'
-alias OGV='~/Code/OpenGov/voltron'
-alias OGD2='~/Code/OpenGov/DelphiusApp2'
-alias OGChefKichen='~/Code/OpenGov/chef_kitchen'
+# HackerRank
+alias HR='~/Code/HackerRank'
+alias HRB='~/Code/HackerRank/beaverd'
 
 alias OD='~/Code/OpenGov/OpenGovDeploy'
 
@@ -185,14 +181,17 @@ jtnotes()
     e ~/Dropbox/Notes/jpt.org.gpg
 }
 
-# GPG & GPG Agent setup
-gpg_agent_path=$(which gpg-agent)
-if [ -x "$gpg_agent_path" ]; then
-    export GPG_TTY=$(tty)
-    export SSH_AUTH_SOCK="${HOME}/.gnupg/S.gpg-agent.ssh"
-    gpgconf --launch gpg-agent
-    echo "UPDATESTARTUPTTY" | gpg-connect-agent /bye > /dev/null 2>&1
-fi
+gpg_ssh_agent()
+{
+    gpg_agent_path=$(command -v gpg-agent)
+    if [ -x "$gpg_agent_path" ]; then
+        GPG_TTY=$(tty)
+        SSH_AUTH_SOCK="${HOME}/.gnupg/S.gpg-agent.ssh"
+        export GPG_TTY SSH_AUTH_SOCK
+        gpgconf --launch gpg-agent
+        echo "UPDATESTARTUPTTY" | gpg-connect-agent /bye > /dev/null 2>&1
+    fi
+}
 
 #[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
