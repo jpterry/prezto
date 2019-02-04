@@ -43,13 +43,14 @@ typeset -gU cdpath fpath mailpath path
 
 # Set the list of directories that Zsh searches for programs.
 path=(
+  # Prefer python3 from homebrew
+  /usr/local/opt/python/libexec/bin
+
   /usr/local/{bin,sbin}
 
   # Use installed Postgres.app for postgres commands
   /Applications/Postgres.app/Contents/Versions/latest/bin
 
-  # Prefer python from homebrew
-  /usr/local/opt/python/libexec/bin
   $path
 )
 

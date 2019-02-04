@@ -70,6 +70,7 @@ alias MIN='~/Code/minimal'
 # HackerRank
 alias HR='~/Code/HackerRank'
 alias HRB='~/Code/HackerRank/beaverd'
+alias HRB2='~/Code/HackerRank/beaverd2'
 
 alias OD='~/Code/OpenGov/OpenGovDeploy'
 
@@ -88,8 +89,10 @@ alias gap="git add --patch"
 
 alias gcn="git commit --no-edit"
 
-alias knife="nocorrect knife"
+# Kubernetes
+alias k="kubectl"
 
+# Personal Shortcuts
 alias todos="ag -C0 '#\s*[A-Z]{3,}:'"
 
 jiratag(){
@@ -103,6 +106,10 @@ __git_files () {
     _wanted files expl 'local files' _files
 }
 
+# Kubectl completion
+if [ $commands[kubectl] ]; then
+    source <(kubectl completion zsh)
+fi
 
 #############################################
 ############## Helper Functions #############
@@ -179,6 +186,11 @@ docker_shell()
 jtnotes()
 {
     e ~/Dropbox/Notes/jpt.org.gpg
+}
+
+mist()
+{
+    ssh -t "mist" "tmux new-session -s ssh_mist || tmux attach-session -t ssh_mist"
 }
 
 gpg_ssh_agent()
