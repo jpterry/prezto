@@ -106,10 +106,6 @@ __git_files () {
     _wanted files expl 'local files' _files
 }
 
-# Kubectl completion
-if [ $commands[kubectl] ]; then
-    source <(kubectl completion zsh)
-fi
 
 #############################################
 ############## Helper Functions #############
@@ -171,18 +167,6 @@ nvminit()
   . "$(brew --prefix nvm)/nvm.sh"
 }
 
-docker_shell()
-{
-  local dev_machine_name=${1:=jptdockerdev}
-  local machine_mem=${2:=1024}
-
-  docker-machine status "$dev_machine_name" || \
-    docker-machine create --driver vmwarefusion --vmwarefusion-memory-size "$machine_mem" "$dev_machine_name"
-  echo "Setting docker environment"
-  eval "$(docker-machine env $dev_machine_name)"
-  echo "$dev_machine_name setup @ $(docker-machine ip $dev_machine_name)"
-}
-
 jtnotes()
 {
     e ~/Dropbox/Notes/jpt.org.gpg
@@ -205,6 +189,16 @@ gpg_ssh_agent()
     fi
 }
 
-#[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# Lazy load kubectl completion on first use
+function kubectl() {
+    if ! type __start_kubectl >/dev/null 2>&1; then
+        source <(command kubectl completion zsh)
+    fi
+
+    command kubectl "$@"
+}
+
+# FZF
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 return 0
