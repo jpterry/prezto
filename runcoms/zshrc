@@ -43,6 +43,11 @@ if [ -d "$HOME/bin" ]; then
   PATH="$HOME/bin:$PATH"
 fi
 
+# If ububtu snaps are in here add it to the PATH
+if [ -d "/snap/bin" ]; then
+  PATH="$PATH:/snap/bin"
+fi
+
 export EDITOR="mvim -f"
 export VISUAL="mvim -f"
 
