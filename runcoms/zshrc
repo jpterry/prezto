@@ -48,10 +48,7 @@ if [ -d "/snap/bin" ]; then
   PATH="$PATH:/snap/bin"
 fi
 
-export EDITOR="mvim -f"
-export VISUAL="mvim -f"
-
-export EDITOR="/usr/local/bin/emacsclient -c"
+export EDITOR="code -w"
 export VISUAL="$EDITOR"
 
 # key bindings
@@ -64,20 +61,12 @@ alias ll='ls -l'
 alias la='ls -a'
 alias sss='/System/Library/Frameworks/ScreenSaver.framework/Versions/A/Resources/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine &'
 alias xcode='open -a XCode'
-
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
-
-#Personal project shortcuts
-alias HC='~/Code/hacker_cast'
-alias SC='~/Code/sesh_code'
-alias MIN='~/Code/minimal'
 
 # HackerRank
 alias HR='~/Code/HackerRank'
 alias HRB='~/Code/HackerRank/beaverd'
 alias HRB2='~/Code/HackerRank/beaverd2'
-
-alias OD='~/Code/OpenGov/OpenGovDeploy'
 
 #git
 alias gd="git diff"
@@ -100,16 +89,8 @@ alias k="kubectl"
 # Personal Shortcuts
 alias todos="ag -C0 '#\s*[A-Z]{3,}:'"
 
-jiratag(){
-  open "https://opengovinc.atlassian.net/browse/$1"
-}
 # Use gcc for CC. XCode 4.2 clang doesn't work with everything. Notably compiling some ruby gems
 #export CC=gcc-4.2
-
-# Fixes slow git completion
-__git_files () {
-    _wanted files expl 'local files' _files
-}
 
 
 #############################################
@@ -152,18 +133,6 @@ ctags_rails()
 strip_shell_colors()
 {
     perl -pe 's/\x1b\[[0-9;]*[mG]//g' "$@"
-}
-
-ssh_home()
-{
-  ssh root@hq.jpterry.net -p 7922 -L 7788:192.168.1.20:80 -L 7799:192.168.1.30:80
-}
-
-chefdk()
-{
-  eval "$(chef shell-init zsh)"
-  export CHEF_CLIENT_USER=jpterry
-  export CHEF_CLIENT_KEY_PATH=$HOME/.chef/jpterry.pem
 }
 
 nvminit()

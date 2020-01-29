@@ -24,7 +24,7 @@ function prompt_bombn_pwd {
 }
 
 function prompt_bombn_host {
-    local ignore_hosts=(jpt-hr-mbp jpt-13)
+    local ignore_hosts=(hr-jpterry-mbp-16 jpt-13)
     local zsh_host=$(print -P "%m")
 
     if [[ ${ignore_hosts[(ie)$zsh_host]} -le ${#ignore_hosts} ]]; then
@@ -86,7 +86,7 @@ function prompt_bombn_setup {
     'rprompt' '[%b:%c]%s%A%B%S%a%d%m%r%U%u'
 
   # Define prompts.
-  PROMPT='${_prompt_bombn_host}%F{cyan}${_prompt_bombn_pwd}%f${git_info:+${(e)git_info[prompt]}}%(!. %B%F{red}#%f%b.)${editor_info[keymap]} '
+  PROMPT='${_prompt_bombn_host}%F{cyan}${_prompt_bombn_pwd}%f${git_info:+${(e)git_info[prompt]}}%(!. %B%F{red}#%f%b.)${editor_info[keymap]} ⚡ '
   RPROMPT='${editor_info[overwrite]}%(?:: %B%F{red}⏎%f%b )${VIM:+" %B%F{green}V%f%b"}${git_info[rprompt]}'
   SPROMPT='zsh: correct %F{red}%R%f to %F{green}%r%f [nyae]? '
 }
